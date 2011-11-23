@@ -1,0 +1,8 @@
+[trainingSet, trainingLabels] = getDatasetFromDir('data/training/WOMAN/');
+[testSet, testLabels] = getDatasetFromDir('data/test/WOMAN/');
+
+[trainingSet, trainingLabels] = getDatasetFromDir('data/training/WOMAN/');
+[testSet, testLabels] = getDatasetFromDir('data/test/WOMAN/');
+
+model = svmtrain(trainingLabels, trainingSet);
+[predictedLabels, accuracy] = svmpredict(testLabels, testSet, model);
