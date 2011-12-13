@@ -1,5 +1,5 @@
 function [model, mu, range] = buildModel(dirName)
-%BUILDMODEL Summary of this function goes here
+%BUILDMODEL Builds a RBM
 %   Detailed explanation goes here
 
 files = getAllFiles(dirName);

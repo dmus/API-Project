@@ -1,5 +1,6 @@
 function [X, y] = getDatasetFromDir(dirName)
-%GETDATASETFROMDIR Summary of this function goes here
+%GETDATASETFROMDIR Puts features for every example in dir matrix X, labels
+%in y
 %   Detailed explanation goes here
 
 dirInfo = dir(dirName);

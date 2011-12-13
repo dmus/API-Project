@@ -1,7 +1,8 @@
-function [f] = extractMfccFeatures(model, filename)
-%EXTRACTFEATURES Summary of this function goes here
-%   Detailed explanation goes here
-[y, fs, ~, ~] = readwav(filename);
+function [f] = extractMfccFeatures(filename)
+%EXTRACTFEATURES Extract MFFC features and return them in row vector
+%   Features extracted include log energy, 0th cepstral coef, delta and
+%   delta-delta coefs
+[y, fs] = readwav(filename);
 
 C = melcepst(y, fs, 'Ne0dD'); % Hanning window, include log energy, 0th cepstral coef, delta and delta-delta coefs
 

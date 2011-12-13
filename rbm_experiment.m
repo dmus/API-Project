@@ -2,8 +2,10 @@
 
 files = getAllFiles('data/training');
 
+%% Build training and test matrices
 trainingSet = zeros(numel(files), 500);
 trainingLabels = zeros(numel(files), 1);
+
 
 for i = 1:numel(files)
     filename = char(files(i));
@@ -38,5 +40,6 @@ for i = 1:numel(files)
     testSet(i,:) = extractFeatures(model, mu, range, filename);
 end
 
+%% Classifying with SVM
 svm = svmtrain(trainingLabels, trainingSet);
 [predictedLabels, accuracy] = svmpredict(testLabels, testSet, svm);
