@@ -1,8 +1,8 @@
-[trainingSetMan, trainingLabelsMan] = getDatasetFromDir('data/training/MAN/');
-[testSetMan, testLabelsMan] = getDatasetFromDir('data/test/MAN/');
+[trainingSetMan, trainingLabelsMan] = getMfccDatasetFromDir('data/training/MAN/');
+[testSetMan, testLabelsMan] = getMfccDatasetFromDir('data/test/MAN/');
 
-[trainingSetWoman, trainingLabelsWoman] = getDatasetFromDir('data/training/WOMAN/');
-[testSetWoman, testLabelsWoman] = getDatasetFromDir('data/test/WOMAN/');
+[trainingSetWoman, trainingLabelsWoman] = getMfccDatasetFromDir('data/training/WOMAN/');
+[testSetWoman, testLabelsWoman] = getMfccDatasetFromDir('data/test/WOMAN/');
 
 trainingSet = [trainingSetMan; trainingSetWoman];
 trainingLabels = [trainingLabelsMan; trainingLabelsWoman];

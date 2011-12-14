@@ -1,5 +1,5 @@
-function [X, y] = getDatasetFromDir(dirName)
-%GETDATASETFROMDIR Puts features for every example in dir matrix X, labels
+function [X, y] = getMfccDatasetFromDir(dirName)
+%GETMFCCDATASETFROMDIR Puts features for every example in dir matrix X, labels
 %in y
 %   Detailed explanation goes here
 

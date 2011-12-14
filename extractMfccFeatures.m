@@ -1,5 +1,5 @@
 function [f] = extractMfccFeatures(filename)
-%EXTRACTFEATURES Extract MFFC features and return them in row vector
+%EXTRACTFEATURES Extract MFFC features, aggregrate and return them in row vector
 %   Features extracted include log energy, 0th cepstral coef, delta and
 %   delta-delta coefs
 [y, fs] = readwav(filename);

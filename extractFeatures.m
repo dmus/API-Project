@@ -9,12 +9,13 @@ v = zeros(size(mu));
 
 Fprime = F(:)';
 v(1:length(Fprime)) = Fprime;
-
+v = v(1:4000);
 % Scale features
+
 v = (v - mu) ./ range;
 
 % To [0,1] scale
-v = (v + 1) /2;
+v = (v + 1) / 2;
 
 f = rbmVtoH(model, v);
 end

@@ -1,9 +1,7 @@
-%[model, mu, range] = buildModel('data/training');
-
 files = getAllFiles('data/training');
 
 %% Build training and test matrices
-trainingSet = zeros(numel(files), 156);
+trainingSet = zeros(numel(files), 5040);
 trainingLabels = zeros(numel(files), 1);
 
 counter = 0;
@@ -19,8 +17,13 @@ for i = 1:numel(files)
     counter = counter + 1;
     trainingLabels(counter) = str2double(label);
     
-    trainingSet(counter,:) = extractMfccFeatures(filename);
-    %trainingSet(counter,:) = extractFeatures(model, mu, range, filename);
+    [y, fs] = readwav(filename);
+    
+    if length(y) > 5040
+        trainingSet(counter,:) = y(1:5040);
+    else
+        trainingSet(counter,1:length(y)) = y;
+    end
 end
 
 trainingSet = trainingSet(1:counter,:);
@@ -28,7 +31,7 @@ trainingLabels = trainingLabels(1:counter);
 
 files = getAllFiles('data/test');
 
-testSet = zeros(numel(files), 156);
+testSet = zeros(numel(files), 5040);
 testLabels = zeros(numel(files), 1);
 
 counter = 0;
@@ -45,8 +48,12 @@ for i = 1:numel(files)
     counter = counter + 1;
     testLabels(counter) = str2double(label);
     
-    testSet(counter,:) = extractMfccFeatures(filename);
-    %testSet(counter,:) = extractFeatures(model, mu, range, filename);
+    [y, fs] = readwav(filename);
+    if length(y) > 5040
+        testSet(counter,:) = y(1:5040);
+    else
+        testSet(counter,1:length(y)) = y;
+    end
 end
 
 testSet = testSet(1:counter,:);

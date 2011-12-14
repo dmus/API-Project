@@ -1,7 +1,7 @@
 [s, fs] = readwav('data/test/WOMAN/JW/4A_endpt.wav');
 [s2, fs2] = readwav('data/test/WOMAN/JW/3A_endpt.wav');
 s2(2641:4080) = 0;
-%spgrambw(s,fs,'pJcw');
+spgrambw(s,fs,'pJcw');
 
 window = windows('hanning');
 frames = enframe(s, window, length(window) / 2)';
