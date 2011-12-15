@@ -1,9 +1,9 @@
-%[model, mu, range] = buildModel('data/training');
+[model, mu, range] = buildModel('data/training');
 
 files = getAllFiles('data/training');
 
 %% Build training and test matrices
-trainingSet = zeros(numel(files), 156);
+trainingSet = zeros(numel(files), 100);
 trainingLabels = zeros(numel(files), 1);
 
 counter = 0;
@@ -19,8 +19,8 @@ for i = 1:numel(files)
     counter = counter + 1;
     trainingLabels(counter) = str2double(label);
     
-    trainingSet(counter,:) = extractMfccFeatures(filename);
-    %trainingSet(counter,:) = extractFeatures(model, mu, range, filename);
+    %trainingSet(counter,:) = extractMfccFeatures(filename);
+    trainingSet(counter,:) = extractFeatures(model, mu, range, filename);
 end
 
 trainingSet = trainingSet(1:counter,:);
@@ -28,7 +28,7 @@ trainingLabels = trainingLabels(1:counter);
 
 files = getAllFiles('data/test');
 
-testSet = zeros(numel(files), 156);
+testSet = zeros(numel(files), 100);
 testLabels = zeros(numel(files), 1);
 
 counter = 0;
@@ -45,8 +45,8 @@ for i = 1:numel(files)
     counter = counter + 1;
     testLabels(counter) = str2double(label);
     
-    testSet(counter,:) = extractMfccFeatures(filename);
-    %testSet(counter,:) = extractFeatures(model, mu, range, filename);
+    %testSet(counter,:) = extractMfccFeatures(filename);
+    testSet(counter,:) = extractFeatures(model, mu, range, filename);
 end
 
 testSet = testSet(1:counter,:);

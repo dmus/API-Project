@@ -3,36 +3,33 @@ function [X, y] = getMfccDatasetFromDir(dirName)
 %in y
 %   Detailed explanation goes here
 
-dirInfo = dir(dirName);
-X = zeros((length(dirInfo) - 2) * 20, 156);
-y = zeros((length(dirInfo) - 2) * 20, 1);
+files = getAllFiles(dirName);
+X = zeros(numel(files), 168);
+y = zeros(numel(files), 1);
 
-count = 0;
-for i = 1:numel(dirInfo)
-    if strcmp(dirInfo(i).name, '.') || strcmp(dirInfo(i).name, '..')
+counter = 0;
+for i = 1:numel(files)
+    filename = char(files(i));
+    rev = fliplr(filename);
+    label = rev(12);
+    if strcmp(label, 'O')
         continue;
     end
+        
+    fileName = char(files(i));
+    f = extractMfccFeatures(fileName);
     
-    speakerDir = strcat(dirName, dirInfo(i).name, '/');
-    digitsInfo = dir(speakerDir);
-    for j = 1:numel(digitsInfo)
-        if strcmp(digitsInfo(j).name, '.') || strcmp(digitsInfo(j).name, '..')
-            continue;
-        end
-        
-        if strcmp(digitsInfo(j).name(1), 'O')
-            continue;
-        elseif strcmp(digitsInfo(j).name(1), 'Z')
-            label = 0;
-        else
-            label = str2double(digitsInfo(j).name(1));
-        end
-        
-        count = count + 1;
-        y(count) = label;
-        X(count,:) = extractMfccFeatures(strcat(speakerDir, digitsInfo(j).name));
+    counter = counter + 1;
+    X(counter,:) = f;
+    
+    if strcmp(label, 'Z')
+        label = '0';
     end
+    y(counter) = str2double(label);
 end
+
+X = X(1:counter,:);
+y = y(1:counter,:);
 
 end
 
