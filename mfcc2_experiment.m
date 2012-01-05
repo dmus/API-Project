@@ -1,3 +1,5 @@
+% Experiment for MFCC features
+
 [trainingSet, trainingLabels] = getMfccDatasetFromDir('data/training');
 [testSet, testLabels] = getMfccDatasetFromDir('data/test');
 

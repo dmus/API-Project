@@ -1,7 +1,6 @@
 function [X, y] = getMfccDatasetFromDir(dirName)
-%GETMFCCDATASETFROMDIR Puts features for every example in dir matrix X, labels
+%GETMFCCDATASETFROMDIR Puts features for every example in dir in matrix X, labels
 %in y
-%   Detailed explanation goes here
 
 files = getAllFiles(dirName);
 X = zeros(numel(files), 168);
