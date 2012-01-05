@@ -19,7 +19,6 @@ for i = 1:numel(files)
     counter = counter + 1;
     trainingLabels(counter) = str2double(label);
     
-    %trainingSet(counter,:) = extractMfccFeatures(filename);
     trainingSet(counter,:) = extractFeatures(model, mu, range, filename);
 end
 

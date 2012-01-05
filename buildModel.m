@@ -5,7 +5,6 @@ function [model, mu, range] = buildModel(dirName)
 files = getAllFiles(dirName);
 X = zeros(numel(files), 1000);
 
-counter = 0;
 for i = 1:numel(files)
     filename = char(files(i));
     rev = fliplr(filename);
@@ -14,14 +13,10 @@ for i = 1:numel(files)
         continue;
     end
         
-    fileName = char(files(i));
-    f = preprocess(fileName);
+    f = preprocess(filename);
     
-    counter = counter + 1;
-    X(counter,:) = f;
+    X(i,:) = f;
 end
-
-X = X(1:counter,:);
 
 %% Feature scaling
 

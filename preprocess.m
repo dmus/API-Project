@@ -1,5 +1,5 @@
 function [f] = preprocess(filename)
-%PREPROCESS Summary of this function goes here
+%PREPROCESS Apply rfft and do some dimension reduction
 %   Detailed explanation goes here
     window = windows('hanning');
     [s, fs] = readwav(filename);
