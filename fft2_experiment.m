@@ -19,14 +19,12 @@ for i = 1:numel(files)
     trainingSet(i,:) = f;
 end
 
-%% Extra
-mu = mean(trainingSet);
-range = max(trainingSet) - min(trainingSet);
-
-% Scale features
-trainingSet = (trainingSet - repmat(mu, size(trainingSet, 1), 1)) ./ repmat(range, size(trainingSet, 1), 1);
+trainingSet = abs(trainingSet);
+%% Scale
+[trainingSet, mu, minVal, maxVal] = scaleSet(trainingSet);
+%trainingSet = (trainingSet - repmat(mu, size(trainingSet, 1), 1));% ./ repmat(range, size(trainingSet, 1), 1);
 % To [0,1] scale
-trainingSet = (trainingSet + 1) / 2;
+%trainingSet = (trainingSet + 1) / 2;
 
 %% Test set
 
@@ -51,9 +49,11 @@ end
 %% Extra
 
 % Scale features
-testSet = (testSet - repmat(mu, size(testSet, 1), 1)) ./ repmat(range, size(testSet, 1), 1);
+testSet = abs(testSet);
+testSet = scaleSet(testSet, mu, minVal, maxVal);
+%testSet = (testSet - repmat(mu, size(testSet, 1), 1));% ./ repmat(range, size(testSet, 1), 1);
 % To [0,1] scale
-testSet = (testSet + 1) / 2;
+%testSet = (testSet + 1) / 2;
 
 %% Classifying with SVM
 svm = svmtrain(trainingLabels, trainingSet);

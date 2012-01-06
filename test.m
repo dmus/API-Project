@@ -1,5 +1,5 @@
 [s, fs] = readwav('data/test/WOMAN/JW/4A_endpt.wav');
-[s2, fs2] = readwav('data/test/WOMAN/JW/3A_endpt.wav');
+[s2, fs2] = readwav('data/test/WOMAN/JW/9A_endpt.wav');
 s2(2641:4080) = 0;
 spgrambw(s,fs,'pJcw');
 

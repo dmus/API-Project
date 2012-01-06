@@ -4,12 +4,6 @@ function [f] = extractFeatures(model, mu, range, filename)
 
 f = preprocess(filename);
     
-% Scale features
-
-f = (f - mu) ./ range;
-
-% To [0,1] scale
-f = (f + 1) / 2;
 
 f = rbmVtoH(model, f);
 end
