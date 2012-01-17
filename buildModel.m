@@ -28,10 +28,11 @@ for i = 1:numel(files)
     
     X = [X; A];
 end
-X = abs(X);
-[X, mu, minVal, maxVal] = scaleSet(X);
+X = real(X);
+
+%[X, mu, minVal, maxVal] = scaleSet(X);
 %% RBM
-model = rbmBB(X, 200, 'maxepoch', 10, 'verbose', true);
+model = rbmBB(X, 200, 'maxepoch', 100, 'verbose', true);
 
 end
 

@@ -33,3 +33,5 @@ for i = 1:length(w)
     
     offset = offset + len;
 end
+
+sum(predictions==correct)/length(predictions)
