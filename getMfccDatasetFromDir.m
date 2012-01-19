@@ -5,7 +5,7 @@ function [X, y, w] = getMfccDatasetFromDir(dirName)
 files = getAllFiles(dirName);
 %X = zeros(numel(files), 168);
 %y = zeros(numel(files), 1);
-X = zeros(0,84);
+X = zeros(0,42);
 y = zeros(0,1);
 w = zeros(0,1);
 
@@ -26,12 +26,13 @@ for i = 1:numel(files)
     %C = [mean(C) std(C) min(C) max(C)];
     
     % If texture windows
-    windowSize = 2;
-    D = zeros(0,84);
+    windowSize = 1;
+    D = zeros(0,42);
     for j = 1 : size(C,1)
         if mod(j, windowSize) == 0
             T = C(j - windowSize + 1:j,:);
-            D = [D; mean(T) std(T)];
+            D = [D; T];
+            %D = [D; mean(T,1) std(T,1)];
         end
     end
     C = D;
