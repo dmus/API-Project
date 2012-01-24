@@ -1,10 +1,12 @@
 % Experiment with MFCC features and voting classification
 
+addpath('Voicebox');
+
 fprintf('Building trainingset...\n');
-[trainingSet, trainingLabels] = getMfccDatasetFromDir('data/training');
+[trainingSet, trainingLabels] = getMfccDatasetFromDir('data/training',0);
 
 fprintf('Building testset...\n');
-[testSet, testLabels, w] = getMfccDatasetFromDir('data/test');
+[testSet, testLabels, w] = getMfccDatasetFromDir('data/test',0);
 
 fprintf('Training...\n');
 model = svmtrain(trainingLabels, trainingSet, '-b 1');

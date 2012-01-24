@@ -1,0 +1,18 @@
+Files to repeat the experiments:
+
+- experiment_raw_sumstats.m
+- experiment_raw_votes.m
+
+For the spectogram representation with the summary statistics and voting method respectively.
+
+- experiment_mfcc_sumstats.m
+- experiment_mfcc_votes.m
+
+For the MFCC representation with the summary statistics and voting method respectively.
+
+- experiment_rbm_sumstats.m
+- experiment_rbm_votes.m
+
+For the RBM representation with the summary statistics and voting method respectively.
+
+Each experiment can take some time. The summary statistics method is a lot faster than the voting method.
